@@ -50,6 +50,7 @@ export class ListLibrosAdminComponent  implements OnInit {
     this.libroService.getLibrosDisponibles().subscribe(
       (data: Libro[]) => {
         this.libros = data;
+        this.totalItems = data.length;
         this.calculateTotalPages();
       },
       (error) => {
@@ -74,18 +75,27 @@ export class ListLibrosAdminComponent  implements OnInit {
     }
   }
   openDetailDialog(libro: Libro): void {
-    console.log('Abriendo modal con libro:', libro);
-    this.dialog.open(DetalleLibroComponent, {
-      data: libro,
-      width: '90rem' // Ajusta el ancho del modal según sea necesario
+    const dialogRef = this.dialog.open(DetalleLibroComponent, {
+        data: libro,
+        width: '60rem' 
     });
 
+    dialogRef.afterClosed().subscribe(result => {
+        if (result) {
+            this.loadLibros(); 
+        }
+    });
   
   }
   openCreateDialog(): void {
-    this.dialog.open(CrearLibroComponent, {
-      width: '90rem'
+    const dialogRef =this.dialog.open(CrearLibroComponent, {
+      width: '60rem'
     });
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+          this.loadLibros(); 
+      }
+  });
   }
   deleteLibro(libro: Libro): void {
     console.log('Eliminando libro:', libro);

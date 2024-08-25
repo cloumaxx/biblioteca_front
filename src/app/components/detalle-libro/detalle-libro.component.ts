@@ -4,7 +4,7 @@ import { MAT_DIALOG_DATA, MatDialogModule,MatDialogRef  } from '@angular/materia
 import { MatButtonModule } from '@angular/material/button';
 import { LoginService } from '../../services/loginServices/login.service';
 import { CommonModule } from '@angular/common';
-import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { LibrosService } from '../../services/librosServices/libros.service';
@@ -29,10 +29,10 @@ export class DetalleLibroComponent {
     @Inject(MAT_DIALOG_DATA) public data: Libro // Recibir datos del libro
   ) { 
     this.libroForm = this.fb.group({
-      titulo: [data.titulo, Validators.required],
-      autor: [data.autor, Validators.required],
-      anno_publicacion: [data.anno_publicacion, Validators.required],
-      cantidad_stock: [data.cantidad_stock, Validators.required]
+      titulo: new FormControl({ value: data.titulo, disabled: !this.editando }, Validators.required),
+      autor: new FormControl({ value: data.autor, disabled: !this.editando }, Validators.required),
+      anno_publicacion: new FormControl({ value: data.anno_publicacion, disabled: !this.editando }, [Validators.required, Validators.min(1500)]),
+      cantidad_stock: new FormControl({ value: data.cantidad_stock, disabled: !this.editando }, Validators.required),
     });
   }
 
@@ -44,13 +44,12 @@ export class DetalleLibroComponent {
       this.user = user;
       if(this.user.rol == 'administrador'){
         this.editar = true;
+        this.toggleControls();
       }
-      console.log('User info:', this.user);
     });
   }
    // Método para guardar los cambios
    onSave(): void {
-    console.log('Guardando cambios:', this.libroForm.value);
     if (this.libroForm.valid) {
       const updatedLibro: Libro = {
         id: this.data.id,
@@ -58,9 +57,7 @@ export class DetalleLibroComponent {
       };
 
       this.libroService.updateLibro(updatedLibro).subscribe({
-        next: (response) => {
-          console.log('Libro actualizado:', response);
-          
+        next: (response) => {          
           this.dialogRef.close(response);
         },
         error: (err) => {
@@ -72,12 +69,25 @@ export class DetalleLibroComponent {
     this.editar = true;
     this.editando = false;
     this.libroForm.reset(this.data); 
-    
+    this.toggleControls();
   }
 
   onEdit(): void {
     this.editar = false;
     this.editando = true;
-    console.log('Editar libro:', this.data);
+    this.toggleControls();
+  }
+  private toggleControls() {
+    if (this.editando) {
+      this.libroForm.get('titulo')?.enable();
+      this.libroForm.get('autor')?.enable();
+      this.libroForm.get('anno_publicacion')?.enable();
+      this.libroForm.get('cantidad_stock')?.enable();
+    } else {
+      this.libroForm.get('titulo')?.disable();
+      this.libroForm.get('autor')?.disable();
+      this.libroForm.get('anno_publicacion')?.disable();
+      this.libroForm.get('cantidad_stock')?.disable();
+    }
   }
 }

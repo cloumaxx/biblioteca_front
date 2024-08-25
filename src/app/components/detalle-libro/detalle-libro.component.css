@@ -1,34 +1,58 @@
-/* Estilo para el título del modal */
-.modal-title {
-    font-size: 1.5em;
-    font-weight: bold;
-    text-align: center;
-  }
-  
-  /* Estilo para el contenido del modal */
-  .modal-content {
-    padding: 16px;
-  }
-  
-  /* Estilo para el contenedor de detalles del libro */
-  .book-detail p {
-    margin: 8px 0;
-    font-size: 1.1em;
-  }
-  
-  /* Estilo para el contenedor de acciones del modal */
-  .modal-actions {
-    display: flex;
-    justify-content: space-between;
-    padding: 12px;
-  }
-  
-  /* Estilo para el botón de editar */
-  .mat-button.edit-button {
-    background-color: #007bff;
-    color: white;
-  }
-  
-  .mat-button.edit-button:hover {
-    background-color: #0056b3;
-  }
+body {
+  color: #566787;
+  background: #f5f5f5;
+  font-family: "Varela Round", sans-serif;
+}
+.form-control:focus {
+  border-color: #566787;
+  box-shadow: 0 0 8px #beace3;
+}
+
+.contact-modal h4 {
+  font-size: 26px;
+  display: inline-block;
+}
+.contact-modal .form-control, .contact-modal .btn  {
+  min-height: 38px;
+  border-radius: 1px;
+  outline: none;
+}
+
+.contact-modal  {
+  color: #566787;
+}
+.contact-modal label {
+  opacity: 0.9;
+  font-weight: normal;
+  font-size: 95%;
+}
+.contact-modal textarea {
+  resize: vertical;
+}
+.contact-modal.modal-dialog {
+  width: 100%;
+}
+.contact-modal .modal-header {
+  padding: 20px 35px ;
+}
+.contact-modal .modal-content {
+  border-radius: 1px;
+}
+.contact-modal .close {
+  position: absolute;
+  right: 35px;
+
+}
+.contact-modal .modal-body {
+  padding: 20px 35px 35px;
+}
+.hint-text {
+  opacity: 0.8;
+}
+.trigger-btn {
+  display: inline-block;
+  margin: 100px auto;
+}
+.btn-group{
+  border-radius: 25px;
+}

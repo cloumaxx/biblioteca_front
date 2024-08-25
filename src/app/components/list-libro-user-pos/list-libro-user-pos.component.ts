@@ -77,15 +77,15 @@ export class ListLibroUserPosComponent {
     }
   }
   openDetailDialog(libro: Libro): void {
-    console.log('Abriendo modal con libro:', libro);
     const dialogRef = this.dialog.open(DetalleLibroComponent, {
-      data: libro,
-      width: '90rem' // Ajusta el ancho del modal según sea necesario
+        data: libro,
+        width: '60rem' 
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      console.log('El modal se cerró');
-      this.ngOnInit();  // Vuelve a ejecutar ngOnInit cuando el modal se cierra
+        if (result) {
+            this.loadLibros(); 
+        }
     });
   }
   openCreateDialog(): void {

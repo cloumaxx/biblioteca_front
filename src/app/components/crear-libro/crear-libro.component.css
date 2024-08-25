@@ -1,0 +1,65 @@
+  body {
+    top:0;
+    color: #566787;
+    background: #f5f5f5;
+    font-family: "Varela Round", sans-serif;
+  }
+  .form-control:focus {
+    border-color: #566787;
+    box-shadow: 0 0 8px #beace3;
+  }
+  
+  .contact-modal h4 {
+    font-size: 26px;
+    display: inline-block;
+  }
+  .contact-modal .form-control, .contact-modal .btn  {
+    min-height: 38px;
+    border-radius: 1px;
+    outline: none;
+  }
+  
+  .contact-modal  {
+    color: #566787;
+  }
+  .contact-modal label {
+    opacity: 0.9;
+    font-weight: normal;
+    font-size: 95%;
+  }
+  .contact-modal textarea {
+    resize: vertical;
+  }
+  .contact-modal.modal-dialog {
+    width: 100%;
+  }
+  .contact-modal .modal-header {
+    padding: 20px 35px ;
+  }
+  .contact-modal .modal-content {
+    border-radius: 1px;
+  }
+  .contact-modal .close {
+    position: absolute;
+    right: 35px;
+  
+  }
+  .contact-modal .modal-body {
+    padding: 20px 35px 35px;
+  }
+  .hint-text {
+    opacity: 0.8;
+  }
+  .trigger-btn {
+    display: inline-block;
+    margin: 100px auto;
+  }
+  .btn-group{
+    border-radius: 25px;
+  }
+  .btn-disabled {
+    background-color: #d3d3d3; /* Gris claro */
+    border-color: #d3d3d3; /* Opcional: cambiar el color del borde */
+    color: #6c757d; /* Opcional: cambiar el color del texto */
+    cursor: not-allowed; /* Cambia el cursor cuando esté deshabilitado */
+  }

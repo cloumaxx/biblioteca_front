@@ -1,0 +1,50 @@
+.body {
+	background: #eeeeee;
+}
+.form-inline {
+	display: inline-block;
+}
+.navbar-brand{
+    cursor: default;
+}
+.navbar-header.col {
+	padding: 0 !important;
+}
+.navbar {	
+    padding-top: 1rem;
+	background: #fff;
+	padding-left: 16px;
+	padding-right: 16px;
+	box-shadow: 0 0 4px rgba(0,0,0,.1);
+}
+.nav-link img {
+	border-radius: 50%;
+	width: 36px;
+	height: 36px;
+	margin: -8px 0;
+	float: left;
+	margin-right: 10px;
+    
+}
+.navbar .navbar-brand {
+	color: #555;
+	padding-left: 0;
+	padding-right: 50px;
+	font-family: 'Merienda One', sans-serif;
+}
+.navbar .navbar-brand i {
+	font-size: 20px;
+	margin-right: 5px;
+}
+
+.navbar .nav-item i {
+    
+	font-size: 18px;
+}
+.navbar .nav-item.open > a {
+	background: none !important;
+}
+
+.nav-item{
+    cursor: pointer;
+}

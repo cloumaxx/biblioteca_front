@@ -1,55 +1,49 @@
-<h2 mat-dialog-title class="modal-title">Detalle del Libro</h2>
-
 <mat-dialog-content class="modal-content">
-  <form [formGroup]="libroForm">
-    <div class="book-detail">
-      <!-- Mostrar campos de formulario si 'editar' es verdadero -->
-      <div *ngIf="!editar">
-        <mat-form-field appearance="fill">
-          <mat-label>Título</mat-label>
-          <input matInput formControlName="titulo">
-          <mat-error *ngIf="libroForm.controls['titulo'].invalid">El título es obligatorio.</mat-error>
-        </mat-form-field>
-
-        <mat-form-field appearance="fill">
-          <mat-label>Autor</mat-label>
-          <input matInput formControlName="autor">
-          <mat-error *ngIf="libroForm.controls['autor'].invalid">El autor es obligatorio.</mat-error>
-        </mat-form-field>
-
-        <mat-form-field appearance="fill">
-          <mat-label>Año de Publicación</mat-label>
-          <input matInput formControlName="anno_publicacion">
-          <mat-error *ngIf="libroForm.controls['anno_publicacion'].invalid">El año de publicación es obligatorio.</mat-error>
-        </mat-form-field>
-
-        <mat-form-field appearance="fill">
-          <mat-label>Cantidad en Stock</mat-label>
-          <input matInput formControlName="cantidad_stock" >
-          <mat-error *ngIf="libroForm.controls['cantidad_stock'].invalid">La cantidad en stock es obligatoria.</mat-error>
-        </mat-form-field>
+  <div class="modal-dialog contact-modal">
+    <div class="modal-content">
+      <div class="modal-header">				
+        <h4 class="modal-title">Detalle del Libro</h4>
       </div>
+      <div class="modal-body">
+        <form [formGroup]="libroForm">
+          <div class="form-group">
+            <label for="inputName">Título</label>
+            <input matInput type="text" class="form-control" id="inputName" formControlName="titulo" required [disabled]="!editando">
+          </div>
+          <br>
+          <div class="form-group">
+            <label for="inputEmail">Autor</label>
+            <input matInput type="text" class="form-control" id="inputAutor" formControlName="autor" required [disabled]="!editando">
+            <mat-error *ngIf="libroForm.controls['autor'].invalid">El autor es obligatorio.</mat-error>
+          </div> 
+          <br>
+          <div class="form-group">
+            <label for="inputMessage">Año de Publicación</label>
+            
+            <input matInput type="number" class="form-control" id="inputAnno_publicacion" formControlName="anno_publicacion" required [disabled]="!editando"
+            min="1500"  step="1">
+            <mat-error *ngIf="libroForm.controls['anno_publicacion'].invalid">El año de publicación es obligatorio.</mat-error>
+          </div>
+          <br>
+          <div class="form-group">
+            <label for="inputMessage">Cantidad en Stock</label>
+            <input matInput type="number" class="form-control" id="inputCantidad_stock" formControlName="cantidad_stock" required [disabled]="!editando">
+            <mat-error *ngIf="libroForm.controls['cantidad_stock'].invalid">La cantidad en stock es obligatoria.</mat-error>
+          </div> 
+          <br>
 
-      <!-- Mostrar detalles solo si 'editar' es falso -->
-      <div *ngIf="editar">
-        <p><strong>Título:</strong> {{ libroForm.value.titulo }}</p>
-        <p><strong>Autor:</strong> {{ libroForm.value.autor }}</p>
-        <p><strong>Año de Publicación:</strong> {{ libroForm.value.anno_publicacion }}</p>
-        <p><strong>Cantidad en Stock:</strong> {{ libroForm.value.cantidad_stock }}</p>
+          <div class="btn-group" role="group" aria-label="Basic outlined example">
+            <!-- Botón de Editar solo cuando 'editando' es falso -->
+            <button type="button" class="btn btn-outline-warning" *ngIf="!editando" (click)="onEdit()">Editar</button>
+            <!-- Botones de Guardar y Cancelar solo cuando 'editando' es verdadero -->
+            <button type="button" class="btn btn-outline-success" *ngIf="editando" (click)="onSave()">Guardar</button>
+            <button type="button" class="btn btn-outline-info" *ngIf="editando" (click)="onCancel()">Cancelar</button>
+            <!-- Botón de Cerrar siempre visible -->
+            <button type="button" class="btn btn-outline-danger" (click)="onClose()">Cerrar</button>
+          </div>
+
+        </form>
       </div>
     </div>
-  </form>
+  </div>
 </mat-dialog-content>
-
-<mat-dialog-actions class="modal-actions">
-  
-  <!-- Botón de Editar solo cuando 'editar' es falso -->
-  <button mat-button *ngIf="editar" (click)="onEdit()">Editar</button>
-
-  <!-- Botones de Guardar y Cancelar solo cuando 'editar' es verdadero -->
-  <button mat-button *ngIf="editando" color="primary" (click)="onSave()">Guardar</button>
-  <button mat-button *ngIf="editando" (click)="onCancel()">Cancelar</button>
-  
-  <!-- Botón de Cerrar siempre visible -->
-  <button mat-button (click)="onClose()">Cerrar</button>
-</mat-dialog-actions>
