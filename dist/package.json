@@ -1,12 +1,8 @@
 {
-  "name": "biblioteca-front",
-  "version": "0.0.0",
+  "name": "front-biblioteca",
+  "version": "1.0.0",
   "scripts": {
-    "ng": "ng",
-    "start": "ng serve",
-    "build": "ng build",
-    "watch": "ng build --watch --configuration development",
-    "test": "ng test"
+    "start": "npx http-server ./dist/biblioteca_front/browser --port $PORT"
   },
   "private": true,
   "dependencies": {
