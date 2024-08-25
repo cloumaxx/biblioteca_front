@@ -3,11 +3,14 @@ const path = require('path');
 
 const app = express();
 
-// Serve only the static files form the dist directory
-app.use(express.static(__dirname + '/dist/biblioteca_front/browser'));
+// Serve only the static files from the dist directory
+app.use(express.static(path.join(__dirname, 'dist', 'biblioteca-front', 'browser')));
 
-app.get('*', function(req, res) {
-  res.sendFile(path.join(__dirname + '/dist/biblioteca_front/browser/index.html'));
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, 'dist', 'biblioteca-front', 'browser', 'index.html'));
 });
 
-app.listen(process.env.PORT || 8080);
+const port = process.env.PORT || 8080;
+app.listen(port, () => {
+  console.log(`Server running on port ${port}`);
+});
