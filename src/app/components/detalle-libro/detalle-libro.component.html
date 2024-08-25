@@ -1,0 +1,55 @@
+<h2 mat-dialog-title class="modal-title">Detalle del Libro</h2>
+
+<mat-dialog-content class="modal-content">
+  <form [formGroup]="libroForm">
+    <div class="book-detail">
+      <!-- Mostrar campos de formulario si 'editar' es verdadero -->
+      <div *ngIf="!editar">
+        <mat-form-field appearance="fill">
+          <mat-label>Título</mat-label>
+          <input matInput formControlName="titulo">
+          <mat-error *ngIf="libroForm.controls['titulo'].invalid">El título es obligatorio.</mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill">
+          <mat-label>Autor</mat-label>
+          <input matInput formControlName="autor">
+          <mat-error *ngIf="libroForm.controls['autor'].invalid">El autor es obligatorio.</mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill">
+          <mat-label>Año de Publicación</mat-label>
+          <input matInput formControlName="anno_publicacion">
+          <mat-error *ngIf="libroForm.controls['anno_publicacion'].invalid">El año de publicación es obligatorio.</mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill">
+          <mat-label>Cantidad en Stock</mat-label>
+          <input matInput formControlName="cantidad_stock" >
+          <mat-error *ngIf="libroForm.controls['cantidad_stock'].invalid">La cantidad en stock es obligatoria.</mat-error>
+        </mat-form-field>
+      </div>
+
+      <!-- Mostrar detalles solo si 'editar' es falso -->
+      <div *ngIf="editar">
+        <p><strong>Título:</strong> {{ libroForm.value.titulo }}</p>
+        <p><strong>Autor:</strong> {{ libroForm.value.autor }}</p>
+        <p><strong>Año de Publicación:</strong> {{ libroForm.value.anno_publicacion }}</p>
+        <p><strong>Cantidad en Stock:</strong> {{ libroForm.value.cantidad_stock }}</p>
+      </div>
+    </div>
+  </form>
+</mat-dialog-content>
+
+<mat-dialog-actions class="modal-actions">
+  
+  <!-- Botón de Editar solo cuando 'editar' es falso -->
+  <button mat-button *ngIf="editar" (click)="onEdit()">Editar</button>
+
+  <!-- Botones de Guardar y Cancelar solo cuando 'editar' es verdadero -->
+  <button mat-button *ngIf="editando" color="primary" (click)="onSave()">Guardar</button>
+  <button mat-button *ngIf="editando" (click)="onCancel()">Cancelar</button>
+  
+  <!-- Botón de Cerrar siempre visible -->
+  <button mat-button (click)="onClose()">Cerrar</button>
+</mat-dialog-actions>

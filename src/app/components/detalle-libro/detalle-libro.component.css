@@ -1,0 +1,34 @@
+/* Estilo para el título del modal */
+.modal-title {
+    font-size: 1.5em;
+    font-weight: bold;
+    text-align: center;
+  }
+  
+  /* Estilo para el contenido del modal */
+  .modal-content {
+    padding: 16px;
+  }
+  
+  /* Estilo para el contenedor de detalles del libro */
+  .book-detail p {
+    margin: 8px 0;
+    font-size: 1.1em;
+  }
+  
+  /* Estilo para el contenedor de acciones del modal */
+  .modal-actions {
+    display: flex;
+    justify-content: space-between;
+    padding: 12px;
+  }
+  
+  /* Estilo para el botón de editar */
+  .mat-button.edit-button {
+    background-color: #007bff;
+    color: white;
+  }
+  
+  .mat-button.edit-button:hover {
+    background-color: #0056b3;
+  }

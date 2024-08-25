@@ -1,0 +1,83 @@
+body{
+    margin-top:20px;
+    background: #f6f9fc;
+}
+.account-block {
+    padding: 0;
+    background-image: url(https://www.biblored.gov.co/sites/default/files/2022-02/fotonotavb.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 100%;
+    position: relative;
+}
+.account-block .overlay {
+    -webkit-box-flex: 1;
+    -ms-flex: 1;
+    flex: 1;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: rgba(0, 0, 0, 0.4);
+}
+.account-block .account-testimonial {
+    text-align: center;
+    color: #fff;
+    position: absolute;
+    margin: 0 auto;
+    padding: 0 1.75rem;
+    bottom: 3rem;
+    left: 0;
+    right: 0;
+}
+
+.text-theme {
+    color: #5369f8 !important;
+}
+
+.btn-theme {
+    background-color: #5369f8;
+    border-color: #5369f8;
+    color: #fff;
+}
+#main_body{
+    padding-top:5rem ;
+}
+#main-wrapper{
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Sombra */
+    overflow: hidden; /* Esconde contenido que sobresale */
+    background-color: #fff; /* Fondo blanco */
+    font-family: Arial, sans-serif; /* Fuente */
+    transition: transform 0.2s ease-in-out;
+}
+
+.toast {
+    visibility: visible;
+    min-width: 250px;
+    margin: 0 auto;
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    border-radius: 2px;
+    padding: 16px;
+    position: fixed;
+    z-index: 1;
+    left: 50%;
+    bottom: 30px;
+    transform: translateX(-50%);
+    transition: opacity 0.5s ease-in-out;
+  }
+  
+  .toast-success {
+    background-color: #4CAF50; /* Green */
+  }
+  
+  .toast-error {
+    background-color: #f44336; /* Red */
+  }
+  
+  .toast.hide {
+    visibility: hidden;
+    opacity: 0;
+  }
