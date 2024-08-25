@@ -4,6 +4,7 @@
   "scripts": {
     "ng": "ng",
     "start": "npx http-server ./dist/biblioteca_front/browser --port $PORT",
+    "heroku-postbuild": "ng build --prod",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test"
