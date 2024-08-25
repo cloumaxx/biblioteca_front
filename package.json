@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "start": "npx http-server ./dist/biblioteca_front/browser --port $PORT",
+    "start": "ng serve",
     "heroku-postbuild": "ng build",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
