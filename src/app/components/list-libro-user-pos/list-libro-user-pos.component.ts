@@ -46,7 +46,9 @@ export class ListLibroUserPosComponent {
     });
     this.loadLibros();
   }
-
+  /**
+   * Obtiene los libros disponibles
+   */
   loadLibros(): void {
     this.usuarioService.getUsuarioById(this.idUser).subscribe(
       (data) => {
@@ -93,6 +95,11 @@ export class ListLibroUserPosComponent {
       width: '90rem'
     });
   }
+  /**
+   * 
+   * @param libro 
+   * Pide un libro prestado
+   */
   pedirLibro(libro: Libro): void {
     this.libroService.pedirLibro(libro, this.user.id).subscribe(
       (data) => {
@@ -104,6 +111,13 @@ export class ListLibroUserPosComponent {
       }
     );
   }
+  /**
+   * 
+   * @param libro 
+   * @returns
+   * Regresa un libro prestado
+   */
+
   regresarLibro(libro:Libro): void {
     this.libroService.regresarLibro(libro, this.user.id).subscribe(
       (data) => {

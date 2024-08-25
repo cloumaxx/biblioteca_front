@@ -8,7 +8,12 @@ import { LoginService } from '../services/loginServices/login.service';
 export class AuthGuard implements CanActivate {
 
   constructor(private loginService: LoginService, private router: Router) { }
-
+  /**
+   * 
+   * @param route 
+   * @returns 
+   * Verifica si el usuario tiene permisos para acceder a la ruta
+   */
   canActivate(route: ActivatedRouteSnapshot): boolean {
     const token = localStorage.getItem('access');
     if (token) {

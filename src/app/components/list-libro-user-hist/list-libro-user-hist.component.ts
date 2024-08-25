@@ -45,7 +45,9 @@ export class ListLibroUserHistComponent implements OnInit {
     });
     this.loadHistorial();
   }
-  
+  /**
+   * Obtiene el historial de prestamos del usuario
+   */
   loadHistorial(): void {
     this.prestamosService.getHistorial(this.id_user).subscribe(
       res => {
@@ -55,21 +57,33 @@ export class ListLibroUserHistComponent implements OnInit {
       err => console.log(err)
     );
   }
+  /**
+   * Calcula el total de páginas
+   */
   calculateTotalPages(): void {
     this.totalPages = Math.ceil(this.prestamos.length / this.itemsPerPage);
   }
-
+  /**
+   * Cambia a la siguiente página
+   */
   nextPage(): void {
     if (this.currentPage < this.totalPages) {
       this.currentPage++;
     }
   }
-
+  /**
+   * Cambia a la página anterior
+    */
   previousPage(): void {
     if (this.currentPage > 1) {
       this.currentPage--;
     }
   } 
+  /**
+   * 
+   * @param libro 
+   * Abre el dialogo de detalle del libro
+   */
   openDetailDialog(libro: Libro): void {
     const dialogRef = this.dialog.open(DetalleLibroComponent, {
         data: libro,
@@ -82,10 +96,22 @@ export class ListLibroUserHistComponent implements OnInit {
         }
     });
   }
+  /**
+   * 
+   * @param fechaDevolucion 
+   * @returns 
+   * Obtiene el estado del libro
+   */
   getEstado(fechaDevolucion: string | null): string {
 
     return fechaDevolucion ? 'Entregado' : 'En posesión';
   }
+  /**
+   * 
+   * @param libro 
+   * @returns
+   * Regresa un libro prestado
+   */
   regresarLibro(libro:Libro): void {
     this.libroService.regresarLibro(libro, this.user.id).subscribe(
       (data) => {

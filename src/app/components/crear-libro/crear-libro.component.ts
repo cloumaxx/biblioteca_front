@@ -28,7 +28,9 @@ export class CrearLibroComponent {
       cantidad_stock: ['', [Validators.required, Validators.min(1)]]
     });
   }
-
+  /**
+   *  Guarda un libro en la base de datos
+   */
   onSave(): void {
     if (this.libroForm.valid) {
       const nuevoLibro: Libro = this.libroForm.value;
@@ -44,7 +46,9 @@ export class CrearLibroComponent {
       });
     }
   }
-
+  /**
+   * Cierra el dialogo
+   */
   onCancel(): void {
     this.dialogRef.close();
   }

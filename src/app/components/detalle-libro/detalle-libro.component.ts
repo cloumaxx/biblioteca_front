@@ -64,19 +64,28 @@ export class DetalleLibroComponent {
           console.error('Error al actualizar el libro:', err);
         }
       });
-    }  }
+    }  
+  }
+  /**
+   * Método para cancelar la edición
+   */
   onCancel(): void {
     this.editar = true;
     this.editando = false;
     this.libroForm.reset(this.data); 
     this.toggleControls();
   }
-
+  /**
+   * Método para editar el libro
+    */
   onEdit(): void {
     this.editar = false;
     this.editando = true;
     this.toggleControls();
   }
+  /**
+   * Método para habilitar o deshabilitar los controles del formulario
+   */
   private toggleControls() {
     if (this.editando) {
       this.libroForm.get('titulo')?.enable();

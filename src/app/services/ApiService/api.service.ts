@@ -9,6 +9,11 @@ export class ApiService {
 
   private baseUrl: string = 'https://biblioteca-project-app-135ad2c05795.herokuapp.com/api/';
 
+  /**
+   * 
+   * @returns string
+   * Obtiene la url base de la API
+   */
   getBaseUrl(): string {
     return this.baseUrl;
   }

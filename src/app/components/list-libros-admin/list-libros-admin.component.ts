@@ -45,7 +45,9 @@ export class ListLibrosAdminComponent  implements OnInit {
       console.log('User info:', this.user);
     });
   }
-
+  /**
+   * Obtiene los libros disponibles
+   */
   loadLibros(): void {
     this.libroService.getLibrosDisponibles().subscribe(
       (data: Libro[]) => {
@@ -97,6 +99,12 @@ export class ListLibrosAdminComponent  implements OnInit {
       }
   });
   }
+  /**
+   * 
+   * @param libro 
+   * Elimina un libro
+   * 
+   */
   deleteLibro(libro: Libro): void {
     console.log('Eliminando libro:', libro);
     this.libroService.deleteLibro(libro).subscribe(

@@ -14,6 +14,14 @@ export class LoginService {
   constructor(private http: HttpClient, private router: Router, private apiService: ApiService) {}
   private apiUrl = `${this.apiService.getBaseUrl()}login/`;  
 
+  /**
+  * La función de login envía las credenciales del usuario al servidor, establece la sesión basándose en la respuesta,
+  * y redirige al usuario a diferentes páginas basadas en su rol.
+  * @param credentials - La función `login` que has proporcionado recibe un objeto `credentials` con las propiedades
+  * con las propiedades `username` y `password`. A continuación, hace una solicitud POST a un punto final de la API con estos
+  * credenciales y espera un objeto `AuthResponse` a cambio.
+  * @returns La función `login` devuelve un Observable de tipo `AuthResponse`.
+  */
   login(credentials: { username: string; password: string }): Observable<AuthResponse> {
     return this.http.post<AuthResponse>(this.apiUrl, credentials).pipe(
       tap(response => {
@@ -33,6 +41,11 @@ export class LoginService {
     );
   }
   
+  /**
+   * La función `setSession` almacena los datos de autenticación en el localStorage del navegador.
+   * @param {AuthResponse} response - El parámetro `response` de la función `setSession` es del tipo
+   * `AuthResponse`, que contiene las siguientes propiedades:
+   */
   setSession(response: AuthResponse): void {
     localStorage.setItem('access', response.access);
     localStorage.setItem('refresh', response.refresh);
@@ -52,6 +65,10 @@ export class LoginService {
     return this.userSubject.asObservable();
   }
 
+  /**
+   * La función `logout` elimina los tokens de acceso del usuario y la información del almacenamiento local, actualiza el
+   * usuario a null, y navega a la página de inicio de sesión.
+   */
   logout(): void {
     localStorage.removeItem('access');
     localStorage.removeItem('refresh');

@@ -33,6 +33,7 @@ export class ListLibroUserComponent {
     private loginService: LoginService,
     private libroService: LibrosService,
     private dialog: MatDialog) { }
+
   ngOnInit(): void {
     this.loadLibros();
     this.loginService.getUser().subscribe(user => {
@@ -45,7 +46,9 @@ export class ListLibroUserComponent {
       }
     });
   }
-
+  /**
+   * Obtiene los libros disponibles
+   */
   loadLibros(): void {
     this.libroService.getLibrosDisponibles().subscribe(
       (data: Libro[]) => {
@@ -58,22 +61,32 @@ export class ListLibroUserComponent {
       }
     );
   }
-
+  /*
+    * Calcula el total de páginas
+    */
   calculateTotalPages(): void {
     this.totalPages = Math.ceil(this.libros.length / this.itemsPerPage);
   }
-
+  /**
+   * Cambia la página actual
+  */
   nextPage(): void {
     if (this.currentPage < this.totalPages) {
       this.currentPage++;
     }
   }
-
+  /**
+   * Cambia a la página anterior
+   * */
   previousPage(): void {
     if (this.currentPage > 1) {
       this.currentPage--;
     }
   }
+  /**
+   * Abre un dialogo para ver los detalles de un libro
+   * @param libro 
+   */
   openDetailDialog(libro: Libro): void {
     const dialogRef = this.dialog.open(DetalleLibroComponent, {
         data: libro,
@@ -86,11 +99,18 @@ export class ListLibroUserComponent {
         }
     });
   }
+  /**
+   * Abre un dialogo para crear un libro
+   */
   openCreateDialog(): void {
     this.dialog.open(CrearLibroComponent, {
       width: '60rem'
     });
   }
+  /**
+   * Pide un libro prestado
+   * @param libro 
+   */
   pedirLibro(libro: Libro): void {
     this.libroService.pedirLibro(libro, this.user.id).subscribe(
       (data) => {
